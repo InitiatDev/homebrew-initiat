@@ -13,11 +13,21 @@ if [ -z "$VERSION" ]; then
     exit 1
 fi
 
-echo "🔧 Generating Homebrew formula for version $VERSION"
-echo ""
+# Check if we're in quiet mode
+QUIET_MODE=false
+if [ "$2" = "--quiet" ]; then
+  QUIET_MODE=true
+fi
+
+if [ "$QUIET_MODE" = false ]; then
+  echo "🔧 Generating Homebrew formula for version $VERSION"
+  echo ""
+fi
 
 # Download and verify the release files
-echo "📥 Downloading release files..."
+if [ "$QUIET_MODE" = false ]; then
+  echo "📥 Downloading release files..."
+fi
 mkdir -p temp
 cd temp
 
@@ -29,16 +39,20 @@ curl -L -o "initiat-darwin-arm64.tar.gz" "https://github.com/InitiatDev/initiat-
 INTEL_SHA=$(shasum -a 256 "initiat-darwin-amd64.tar.gz" | cut -d' ' -f1)
 ARM_SHA=$(shasum -a 256 "initiat-darwin-arm64.tar.gz" | cut -d' ' -f1)
 
-echo "📊 SHA256 checksums:"
-echo "  Intel: $INTEL_SHA"
-echo "  ARM:   $ARM_SHA"
-echo ""
+if [ "$QUIET_MODE" = false ]; then
+  echo "📊 SHA256 checksums:"
+  echo "  Intel: $INTEL_SHA"
+  echo "  ARM:   $ARM_SHA"
+  echo ""
+fi
 
 cd ..
 
 # Generate the formula content
-echo "📝 Generated Homebrew formula:"
-echo "=========================================="
+if [ "$QUIET_MODE" = false ]; then
+  echo "📝 Generated Homebrew formula:"
+  echo "=========================================="
+fi
 cat << EOF
 class Initiat < Formula
   desc "The Developer Experience Platform that eliminates onboarding friction"
@@ -69,19 +83,21 @@ class Initiat < Formula
 end
 EOF
 
-echo "=========================================="
-echo ""
-echo "🚀 Next steps:"
-echo "1. Copy the formula above to Formula/initiat.rb"
-echo "2. Review the changes: git diff Formula/initiat.rb"
-echo "3. Commit and push:"
-echo "   git add Formula/initiat.rb"
-echo "   git commit -m 'Update initiat to $VERSION'"
-echo "   git push origin main"
-echo ""
-echo "4. Test installation:"
-echo "   brew tap InitiatDev/initiat"
-echo "   brew install initiat"
+if [ "$QUIET_MODE" = false ]; then
+  echo "=========================================="
+  echo ""
+  echo "🚀 Next steps:"
+  echo "1. Copy the formula above to Formula/initiat.rb"
+  echo "2. Review the changes: git diff Formula/initiat.rb"
+  echo "3. Commit and push:"
+  echo "   git add Formula/initiat.rb"
+  echo "   git commit -m 'Update initiat to $VERSION'"
+  echo "   git push origin main"
+  echo ""
+  echo "4. Test installation:"
+  echo "   brew tap InitiatDev/initiat"
+  echo "   brew install initiat"
+fi
 
 # Clean up
 rm -rf temp
