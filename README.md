@@ -1,7 +1,6 @@
 # Initiat Homebrew Tap
 
-This is the official Homebrew tap for [Initiat CLI](https://initiat.dev), the Developer Experience Platform that eliminates onboarding friction.
-
+This is the official Homebrew tap for [Initiat CLI](https://github.com/InitiatDev/initiat-cli).
 ## Installation
 
 ```bash
