@@ -1,19 +1,19 @@
 class Initiat < Formula
   desc "The Developer Experience Platform that eliminates onboarding friction"
   homepage "https://initiat.dev"
-  url "https://github.com/InitiatDev/initiat-cli/releases/download/v0.5.1/initiat-darwin-amd64.tar.gz"
-  sha256 "01719b5679ac79e9a82d784330a9e0798d136aa9c69eacbbb05651ce05659807"
+  url "https://github.com/InitiatDev/initiat-cli/releases/download/v0.6.0/initiat-darwin-amd64.tar.gz"
+  sha256 "7d5b56255ea8709b2003d17da3c38b960293741671d8b18a305dc5eb102e850e"
   license "AGPL-3.0"
-  version "v0.5.1"
+  version "v0.6.0"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/InitiatDev/initiat-cli/releases/download/v0.5.1/initiat-darwin-amd64.tar.gz"
-      sha256 "01719b5679ac79e9a82d784330a9e0798d136aa9c69eacbbb05651ce05659807"
+      url "https://github.com/InitiatDev/initiat-cli/releases/download/v0.6.0/initiat-darwin-amd64.tar.gz"
+      sha256 "7d5b56255ea8709b2003d17da3c38b960293741671d8b18a305dc5eb102e850e"
     end
     if Hardware::CPU.arm?
-      url "https://github.com/InitiatDev/initiat-cli/releases/download/v0.5.1/initiat-darwin-arm64.tar.gz"
-      sha256 "08e527dfb94196eb639451dfcd1ede1d77b45d9b83f2a24b7fbd5d8fdc4a701f"
+      url "https://github.com/InitiatDev/initiat-cli/releases/download/v0.6.0/initiat-darwin-arm64.tar.gz"
+      sha256 "d93eac9a22029afb1435f591fda6e8d06316bd006245f5eb4fd4ed940e11cc6c"
     end
   end
 
